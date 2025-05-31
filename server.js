@@ -1,25 +1,18 @@
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
 
-let dummyData = [];
-
-app.post('/upload', (req, res) => {
-  const { name, email } = req.body;
-  dummyData.push({ name, email });
-  res.status(200).json({ message: 'Data saved' });
+// ✅ Tambahkan ini:
+app.get('/', (req, res) => {
+  res.send('🚀 Backend is running! Welcome to AutoDBPuller API');
 });
 
-app.get('/data', (req, res) => {
-  res.status(200).json(dummyData);
-});
+// Tambahkan route API kamu lain di bawah sini...
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
